@@ -37,3 +37,15 @@ PRIMARY KEY (id),
 FOREIGN KEY (userId) REFERENCES user(id),
 FOREIGN KEY (addressId) REFERENCES address(id)
 ) ;
+
+-- Insert for country table
+INSERT INTO country (name) values('Colombia');
+INSERT INTO country (name) values('Argentina');
+
+-- Insert for country table
+INSERT INTO city (countryId, name) values(1,'Cali');
+INSERT INTO city (countryId, name) values(1,'Bogota');
+INSERT INTO city (countryId, name) values(1,'Medellin');
+INSERT INTO city (countryId, name) values(2,'Rosario');
+INSERT INTO city (countryId, name) values(2,'Buenos Aires');
+INSERT INTO city (countryId, name) values(2,'Mendoza');
