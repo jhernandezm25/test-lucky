@@ -11,10 +11,16 @@ export class AddressService {
         private cityService: CityService
     ) { }
 
-    create(createAddressDto: CreateAddressDto) {
+    create(createAddressDto: CreateAddressDto):any{
         const city = this.cityService.findOne(createAddressDto.cityId);
         if (!city) {
-          //  return {status:'error', message:"city not found"}
+            return {
+                "statusCode": 400,
+                "message": [
+                    "city not found"
+                ],
+                "error": "Bad Request"
+            }
         }
         return this.addressRepository.save(createAddressDto)
     }

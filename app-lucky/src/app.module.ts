@@ -7,16 +7,12 @@ import {User} from './user/entities/user.entity'
 import { City } from './city/entities/city.entity';
 import { Address } from './address/entities/address.entity';
 import { Profile } from './profile/entities/profile.entity';
-import { ProfileService } from './profile/profile.service';
-import { AddressService } from './address/address.service';
-import { CityService } from './city/city.service';
-import { CityModule } from './city/city.module';
-import { AddressModule } from './address/address.module';
-import { ProfileModule } from './profile/profile.module';
+import { Security } from './security/security';
+import { SecurityModule } from './security/security.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
-    type: 'mysql',
+    type: 'mysql', //TODO - PONER VARIABLES DE ENTORNO
     host: 'localhost',
     port: 3306,
     username: 'user',
@@ -26,6 +22,6 @@ import { ProfileModule } from './profile/profile.module';
     synchronize: true,
   }), UserModule, ],
   controllers: [AppController],
-  providers: [AppService, ],
+  providers: [AppService,],
 })
 export class AppModule {}
