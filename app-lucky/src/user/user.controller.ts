@@ -22,4 +22,8 @@ export class UserController {
     return this.userService.findOne(+id);
   }
 
+  @Get('/login/:username/:pass') //TODO revisar luego
+   login(@Param('username') username: string,@Param('pass') pass: string) {
+    return this.userService.testMethod(username,pass);
+  }
 }

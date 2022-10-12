@@ -11,6 +11,7 @@ import { ProfileService } from '../profile/profile.service';
 import { StatusMessage, Response, StatusCode, CustomizeMessage } from '../utils/response';
 import { Security } from '../security/security';
 import { Console } from 'console';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -30,10 +31,10 @@ export class UserService {
         response.error = CustomizeMessage.UserExist
         return response
       }
-      const encryptedPassword = await this.security.encrypt(createUserDto.password);
       const createAddressDto: CreateAddressDto = { cityId: createUserDto.cityId, street: createUserDto.address }
       const address = await this.addressService.create(createAddressDto);
-      const user = await this.usersRepository.save({ username: createUserDto.username, password: encryptedPassword });
+      const encryptPassword = await this.security.encrypt(createUserDto.password)
+      const user = await this.usersRepository.save({ username: createUserDto.username, password: encryptPassword });
       const createProfileDto: CreateProfileDto = { userId: user.id, addressId: address.id, name: createUserDto.name };
       await this.profileService.create(createProfileDto)
       return user;
@@ -58,5 +59,11 @@ export class UserService {
     const queryResult = await this.usersRepository.query(query);
     const result = queryResult.length > 0 ? queryResult[0] : null
     return result
+  }
+
+  async testMethod(userName: string, password:string) {
+    const user = await this.findByUserName(userName)
+    const isMatch = await this.security.validatePassword(password,user.password)
+    return isMatch
   }
 }
