@@ -4,6 +4,15 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import {User} from './user/entities/user.entity'
+import { City } from './city/entities/city.entity';
+import { Address } from './address/entities/address.entity';
+import { Profile } from './profile/entities/profile.entity';
+import { ProfileService } from './profile/profile.service';
+import { AddressService } from './address/address.service';
+import { CityService } from './city/city.service';
+import { CityModule } from './city/city.module';
+import { AddressModule } from './address/address.module';
+import { ProfileModule } from './profile/profile.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -13,10 +22,10 @@ import {User} from './user/entities/user.entity'
     username: 'user',
     password: 'user',
     database: 'lucky',
-    entities: [User],
+    entities: [User,City,Address,Profile],
     synchronize: true,
-  }), UserModule,],
+  }), UserModule, ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ],
 })
 export class AppModule {}
