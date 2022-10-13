@@ -3,7 +3,7 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Profile } from './entities/profile.entity';
 import { CreateProfileDto } from './dto/create-profile.dto';
-import { StatusMessage, Response, StatusCode, CustomizeMessage } from '../utils/response';
+import { Response, StatusCode, } from '../utils/response';
 
 @Injectable()
 export class ProfileService {
@@ -30,7 +30,6 @@ export class ProfileService {
     }
 
     private formatProfileData(data: any) {
-        console.log('data ==>',data)
         const response: any = {};
         response.id = data.id
         response.name = data.name;
