@@ -7,8 +7,6 @@ import {User} from './user/entities/user.entity'
 import { City } from './city/entities/city.entity';
 import { Address } from './address/entities/address.entity';
 import { Profile } from './profile/entities/profile.entity';
-import { Security } from './security/security';
-import { SecurityModule } from './security/security.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({

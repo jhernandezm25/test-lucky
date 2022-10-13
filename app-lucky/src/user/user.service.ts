@@ -9,7 +9,7 @@ import { CreateAddressDto } from '../address/dto/create-address.dto';
 import { CreateProfileDto } from '../profile/dto/create-profile.dto';
 import { ProfileService } from '../profile/profile.service';
 import { StatusMessage, Response, StatusCode, CustomizeMessage } from '../utils/response';
-import { Security } from '../security/security';
+import { Auth } from '../auth/auth.service';
 
 
 @Injectable()
@@ -17,7 +17,7 @@ export class UserService {
   constructor(@InjectRepository(User) private usersRepository: Repository<User>,
     private addressService: AddressService,
     private profileService: ProfileService,
-    private security: Security
+    private security: Auth
   ) { }
 
   async create(createUserDto: CreateUserDto) {
@@ -62,7 +62,6 @@ export class UserService {
 
   async login(username: string, password: string) {
     const user = await this.findByUsername(username)
-    console.log('asdasdasdasdasdadad')
     const response: Response = {}
     let isMatch: boolean = false;
     if (user != null) { isMatch = await this.security.validatePassword(password, user.password); }

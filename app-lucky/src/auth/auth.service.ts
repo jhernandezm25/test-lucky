@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
+import { StatusMessage, Response, StatusCode, CustomizeMessage } from '../utils/response';
+
 @Injectable()
-export class Security {
+export class Auth {
     constructor(private jwtService: JwtService) { }
     async encrypt(password: string) {
         const saltOrRounds = await bcrypt.genSalt();
