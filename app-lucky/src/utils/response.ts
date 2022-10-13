@@ -21,5 +21,6 @@ export enum StatusCode {
 }
 
 export enum CustomizeMessage {
-    UserExist = 'User already Exist'
+    UserExist = 'User already Exist',
+    InvalidLogin = 'Invalid password or username'
 }

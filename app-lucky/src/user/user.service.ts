@@ -10,8 +10,7 @@ import { CreateProfileDto } from '../profile/dto/create-profile.dto';
 import { ProfileService } from '../profile/profile.service';
 import { StatusMessage, Response, StatusCode, CustomizeMessage } from '../utils/response';
 import { Security } from '../security/security';
-import { Console } from 'console';
-import * as bcrypt from 'bcrypt';
+
 
 @Injectable()
 export class UserService {
@@ -24,7 +23,7 @@ export class UserService {
   async create(createUserDto: CreateUserDto) {
     const response: Response = {}
     try {
-      const username = await this.findByUserName(createUserDto.username);
+      const username = await this.findByUsername(createUserDto.username);
       if (username) {
         response.statusCode = StatusCode.BadRequest;
         response.message = [StatusMessage.BadRequest]
@@ -54,16 +53,29 @@ export class UserService {
     return this.usersRepository.findOne({ where: { id: id } });
   }
 
-  async findByUserName(userName: string) {
-    const query = `select * from user u where u.username = '${userName}'`
+  async findByUsername(username: string) {
+    const query = `select * from user u where u.username = '${username}'`
     const queryResult = await this.usersRepository.query(query);
     const result = queryResult.length > 0 ? queryResult[0] : null
     return result
   }
 
-  async testMethod(userName: string, password:string) {
-    const user = await this.findByUserName(userName)
-    const isMatch = await this.security.validatePassword(password,user.password)
-    return isMatch
+  async login(username: string, password: string) {
+    const user = await this.findByUsername(username)
+    console.log('asdasdasdasdasdadad')
+    const response: Response = {}
+    let isMatch: boolean = false;
+    if (user != null) { isMatch = await this.security.validatePassword(password, user.password); }
+    if (user === null || !isMatch) {
+      response.statusCode = StatusCode.BadRequest;
+      response.message = [StatusMessage.BadRequest]
+      response.error = CustomizeMessage.InvalidLogin
+      return response
+    }
+
+    const jwt = await this.security.generateJWT(username);
+    response.statusCode = StatusCode.Success;
+    response.data = jwt;
+    return response
   }
 }
