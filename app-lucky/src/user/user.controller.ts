@@ -13,7 +13,7 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
-  @Post('/login') //TODO revisar luego
+  @Post('/login')
    login(@Body() authDto:AuthDto ) {
     return this.userService.login(authDto.username,authDto.password);
   }

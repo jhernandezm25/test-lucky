@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-import { StatusMessage, Response, StatusCode, CustomizeMessage } from '../utils/response';
 
 @Injectable()
 export class Auth {
@@ -17,9 +16,10 @@ export class Auth {
     }
 
     async generateJWT(username: string) {
+        console.log('1')
         const payload = { username};
         return {
-            access_token: this.jwtService.sign(payload,{secret:'abcdABCD1234554321'}),
-        }; //TODO colocar variable de entorno
+            access_token: this.jwtService.sign(payload,{secret:process.env.JWT_SECRET}),
+        };
     }
 }

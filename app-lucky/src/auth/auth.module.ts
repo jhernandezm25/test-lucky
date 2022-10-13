@@ -4,8 +4,6 @@ import { JwtModule, JwtService } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { ConfigService } from '@nestjs/config';
 import { JwtStrategy } from './jwt.strategy';
-process.env.JWT_SECRET = 'abcdABCD1234554321' //TODO variables de entorno
-process.env.JWT_EXP_H = '1h'
 
 
 
