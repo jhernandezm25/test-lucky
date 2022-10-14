@@ -1,7 +1,12 @@
+CREATE USER 'user1'@'%' IDENTIFIED BY 'password'; 
+GRANT ALL PRIVILEGES ON *.* TO 'user1'@'%' WITH GRANT OPTION;
+CREATE USER 'user1'@'localhost' IDENTIFIED BY 'password'; 
+GRANT ALL PRIVILEGES ON *.* TO 'user1'@'localhost' WITH GRANT OPTION;
+
 CREATE TABLE user (
 id INT NOT NULL AUTO_INCREMENT,
 username varchar(50) NOT NULL,
-password varchar(50) NOT NULL,
+password varchar(120) NOT NULL,
 PRIMARY KEY (id)
 ) ;
 

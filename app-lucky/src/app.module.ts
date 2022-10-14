@@ -9,27 +9,29 @@ import { Address } from './address/entities/address.entity';
 import { Profile } from './profile/entities/profile.entity';
 import { ConfigModule } from "@nestjs/config";
 import configuration from '../config/configuration';
-import * as redisStore from 'cache-manager-redis-store';
+import { join } from 'node:path';
+//import * as redisStore from 'cache-manager-redis-store';
 @Module({
   imports: [ConfigModule.forRoot({
     isGlobal: true,
     load: [configuration],
   }), TypeOrmModule.forRoot({
-    type: 'mysql', //TODO - PONER VARIABLES DE ENTORNO
-    host: process.env.HOST,
+    type: 'mysql', 
+    host: 'localhost',
     port: +process.env.PORT,
-    username: process.env.USER_DB,
-    password: process.env.PASSWORD_DB,
-    database: process.env.DATABASE,
-    entities: [User, City, Address, Profile],
-    synchronize: true,
+    username: 'user',
+    password: 'user',
+    database: 'lucky',
+    entities: [join(__dirname, '/**/*.entity.{js,ts}')],
+    synchronize: false,
   }), UserModule,
-  CacheModule.register({
-    isGlobal: true,
-    store: redisStore,
-    host: process.env.REDIS_HOST,
-    port: process.env.REDIS_PORT,
-  }),],
+  // CacheModule.register({
+  //   isGlobal: true,
+  //   store: redisStore,
+  //   host: process.env.REDIS_HOST,
+  //   port: process.env.REDIS_PORT,
+  // }),
+],
   controllers: [AppController],
   providers: [AppService,],
 })
