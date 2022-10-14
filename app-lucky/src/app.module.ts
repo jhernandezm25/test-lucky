@@ -17,7 +17,7 @@ import configuration from '../config/configuration';
   }), TypeOrmModule.forRoot({
     type: 'mysql', 
     host: 'localhost',
-    port: +process.env.PORT,
+    port: 3306,
     username: 'user',
     password: 'user',
     database: 'lucky',
