@@ -16,7 +16,6 @@ export class Auth {
     }
 
     async generateJWT(username: string) {
-        console.log('1')
         const payload = { username};
         return {
             access_token: this.jwtService.sign(payload,{secret:process.env.JWT_SECRET}),
