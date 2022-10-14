@@ -14,6 +14,7 @@ export class ProfileService {
     }
 
     async findOneByUserId(userId: number) {
+        console.log('entre =>>>>>>>>>>>>>>')
         const response: Response = {}
         const query = `select p.id, p.name, a.street, c.name as city , d.name as country from lucky.profile p
         inner join lucky.address a
