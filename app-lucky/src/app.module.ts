@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { CacheModule, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -9,9 +9,7 @@ import { Address } from './address/entities/address.entity';
 import { Profile } from './profile/entities/profile.entity';
 import { ConfigModule } from "@nestjs/config";
 import configuration from '../config/configuration';
-
-
-
+import * as redisStore from 'cache-manager-redis-store';
 @Module({
   imports: [ConfigModule.forRoot({
     isGlobal: true,
@@ -23,9 +21,15 @@ import configuration from '../config/configuration';
     username: process.env.USER_DB,
     password: process.env.PASSWORD_DB,
     database: process.env.DATABASE,
-    entities: [User,City,Address,Profile],
+    entities: [User, City, Address, Profile],
     synchronize: true,
-  }), UserModule,],
+  }), UserModule,
+  CacheModule.register({
+    isGlobal: true,
+    store: redisStore,
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT,
+  }),],
   controllers: [AppController],
   providers: [AppService,],
 })

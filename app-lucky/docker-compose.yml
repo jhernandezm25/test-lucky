@@ -1,0 +1,24 @@
+services:
+  redis: # Name of container
+    container_name: redis-lucky
+    image: redis
+    restart: always
+    ports:
+      - 6379:6379
+    volumes:
+      - redis:/data
+  db:
+    image: mysql
+    restart: always
+    environment: 
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: lucky
+        MYSQL_USER: user
+        MYSQL_PASSWORD: user
+    ports:
+      - '3306:3306'
+    volumes: 
+        - ./container/init:/docker-entrypoint-initdb.d
+volumes:
+  redis:
+    driver: local
