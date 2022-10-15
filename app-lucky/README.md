@@ -9,20 +9,24 @@
 
 - Open docker desktop
 - Download this project
-- Execute in order the following commands
+- Execute in order the following commands for initalize the project
 ```sh
 cd app-lucky
 npm i
-npm runstartApp
+npm runs tartApp
+node run start
+```
+- In other terminal execute
+```sh
+cd app-lucky
 node run start
 ```
 
-
 ## Methods
 
-| Method | Route | description |
-| ------ | ------ | ------ |
-| CreateUser | localhost:3000/user/create | This method create a new user in the database |
+| Method | Type |Route | description |
+| ------ | ------ | ------ |------ |
+| CreateUser | POST | localhost:3000/user/create | This method create a new user in the database |
 
  - Body
 ```javascript
@@ -35,9 +39,9 @@ node run start
 }
 ```
 
-| Method | Route | Description |
-| ------ | ------ | ------ |
-| Login | http://localhost:3000/user/login | Validate if the credentials are valid and return a token |
+| Method | Type  Route | Description |
+| ------ |------ | ------ | ------ |
+| Login | POST | http://localhost:3000/user/login | This method validate if the credentials are valid and return a token |
 
  - Body
 ```javascript
@@ -47,8 +51,8 @@ node run start
 }
 ```
 
-| Method | Route | Description | constrain |
-| ------ | ------ | ------ | ------ |
-| GetProfile | localhost:3000/profile/{id} | Get the profile information|Authorization with bearer token |
+| Method | Type | Route | Description | constrain |
+| ------ | ------ |------ | ------ | ------ |
+| GetProfile | GET | localhost:3000/profile/{id} | This method get the profile information|Authorization with bearer token |
 
 
