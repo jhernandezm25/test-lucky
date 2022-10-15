@@ -39,7 +39,7 @@ node run start
 }
 ```
 
-| Method | Type  Route | Description |
+| Method | Type | Route | Description |
 | ------ | ------ | ------ | ------ |
 | Login | POST | http://localhost:3000/user/login | This method validate if the credentials are valid and return a token |
 
