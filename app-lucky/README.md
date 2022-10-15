@@ -48,7 +48,7 @@ node run start
 ```
 
 | Method | Route | Description | constrain |
-| ------ | ------ | ------ |
+| ------ | ------ | ------ | ------ |
 | GetProfile | localhost:3000/profile/{id} | Get the profile information|Authorization with bearer token |
 
 
