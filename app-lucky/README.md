@@ -22,7 +22,7 @@ node run start
 
 | Method | Route | description |
 | ------ | ------ | | ------ |
-| CreateUser | localhost:3000/user/create | This method create a new user in the database, an errors appears if the user already exist|
+| CreateUser | localhost:3000/user/create | This method create a new user in the database |
 
  - Body
 ```javascript
@@ -37,7 +37,7 @@ node run start
 
 | Method | Route | Description |
 | ------ | ------ | | ------ |
-| Login | http://localhost:3000/user/login | Validate if the credentials are valid and return a token|
+| Login | http://localhost:3000/user/login | Validate if the credentials are valid and return a token |
 
  - Body
 ```javascript
@@ -49,6 +49,6 @@ node run start
 
 | Method | Route | Description | constrain |
 | ------ | ------ | | ------ |
-| GetProfile | localhost:3000/profile/{id} | Get the profile information|Authorization with bearer token|
+| GetProfile | localhost:3000/profile/{id} | Get the profile information|Authorization with bearer token |
 
 
