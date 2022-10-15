@@ -21,7 +21,7 @@ node run start
 ## Methods
 
 | Method | Route | description |
-| ------ | ------ | | ------ |
+| ------ | ------ | ------ |
 | CreateUser | localhost:3000/user/create | This method create a new user in the database |
 
  - Body
@@ -36,7 +36,7 @@ node run start
 ```
 
 | Method | Route | Description |
-| ------ | ------ | | ------ |
+| ------ | ------ | ------ |
 | Login | http://localhost:3000/user/login | Validate if the credentials are valid and return a token |
 
  - Body
@@ -48,7 +48,7 @@ node run start
 ```
 
 | Method | Route | Description | constrain |
-| ------ | ------ | | ------ |
+| ------ | ------ | ------ |
 | GetProfile | localhost:3000/profile/{id} | Get the profile information|Authorization with bearer token |
 
 
