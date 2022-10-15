@@ -9,7 +9,7 @@
 
 - Open docker desktop
 - Download this project
-- Execute in orde the following commands
+- Execute in order the following commands
 ```sh
 cd app-lucky
 npm i
