@@ -13,13 +13,12 @@
 ```sh
 cd app-lucky
 npm i
-npm runs tartApp
-node run start
+npm run startApp
 ```
 - In other terminal execute
 ```sh
 cd app-lucky
-node run start
+npm run start
 ```
 
 ## Methods
